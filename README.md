@@ -5,15 +5,17 @@ Este pacote é o site completo, com uma página inicial (home) que pergunta qual
 ```
 site/
 ├── index.html            ← home: "Qual modelo de site você gostaria de ver?"
+├── robots.txt            ← orienta o Google
+├── sitemap.xml           ← lista das páginas para o Google
 ├── assets/
-│   ├── preview-modelo-1.jpg
-│   └── preview-modelo-3.jpg
+│   ├── preview-modelo-1.jpg / .webp
+│   └── preview-modelo-3.jpg / .webp
 ├── modelo-1/             ← Modelo 1 — Noturno
 │   ├── index.html
-│   └── assets/cristiano.jpg
+│   └── assets/  cristiano.jpg, cristiano.webp, og.jpg
 └── modelo-3/             ← Modelo 3 — Blueprint tech
     ├── index.html
-    └── assets/cristiano.jpg
+    └── assets/  cristiano.jpg, cristiano.webp, og.jpg
 ```
 
 No ar, os endereços ficam assim:
@@ -37,6 +39,10 @@ Não precisa instalar nada nem "compilar": é HTML puro, e a Vercel publica como
 | `seuemail@dominio.com.br` | seu e-mail |
 | `[Sua cidade / região]` | sua cidade ou região de atendimento |
 
+Use **"Substituir tudo"**: cada item aparece mais de uma vez (nos botões, no rodapé e nos dados para o Google).
+
+> Os botões de WhatsApp já abrem a conversa com a mensagem *"Olá, Cristiano! Vi seu site e gostaria de uma avaliação."*. Para mudar o texto, edite o trecho depois de `?text=` nos links `wa.me` (os espaços aparecem como `%20`).
+
 3. **Colocar a sua logo**
    - Salve o arquivo da logo como `logo.png` dentro da pasta `assets` de **cada** modelo (`modelo-1/assets` e `modelo-3/assets`) e também na pasta `assets` da home.
    - Nos três `index.html` (home, modelo 1 e modelo 3), busque `<span class="brand-mark">C</span>` e troque o trecho inteiro
@@ -45,7 +51,10 @@ Não precisa instalar nada nem "compilar": é HTML puro, e a Vercel publica como
      <img src="assets/logo.png" alt="Cristiano – Tecnologia e Gestão de Serviços" height="44">
      ```
 4. **Foto em alta qualidade (recomendado):** a foto atual foi recortada do cartaz e tem resolução baixa. Se tiver o arquivo original, salve-o como `cristiano.jpg` (mesmo nome) em `modelo-1/assets` e `modelo-3/assets`, substituindo o atual.
-5. **Teste:** dê dois cliques no `index.html` da pasta `site`: abre a home, e os botões levam a cada modelo, exatamente como vai ficar na internet.
+   > Importante: o site mostra primeiro a versão **`cristiano.webp`** (mais leve). Ao trocar a foto, gere também um `cristiano.webp` novo (por exemplo em https://squoosh.app) e substitua o antigo; se não fizer isso, o site continua mostrando a foto antiga.
+   > O mesmo vale para as prévias da home (`preview-modelo-1.webp` e `preview-modelo-3.webp`).
+5. **Imagem de compartilhamento:** `og.jpg` (em cada modelo) é a imagem que aparece quando o link do site é colado no WhatsApp ou nas redes sociais. Pode trocar por outra (tamanho ideal: 1200×630 px), com o mesmo nome.
+6. **Teste:** dê dois cliques no `index.html` da pasta `site`: abre a home, e os botões levam a cada modelo, exatamente como vai ficar na internet.
 
 ---
 
@@ -112,9 +121,12 @@ Se tiver um domínio (ex.: `cristianoti.com.br`, registrado no registro.br):
 1. Na Vercel, abra o projeto → **Settings → Domains** → digite o domínio → **Add**.
 2. A Vercel mostra os registros de DNS (normalmente um registro **A** e um **CNAME**).
 3. No painel onde o domínio foi registrado, crie esses registros. Em algumas horas o domínio passa a abrir o site, já com HTTPS (cadeado).
+4. Nos três `index.html`, no `sitemap.xml` e no `robots.txt`, busque `https://site-cristiano.vercel.app` e troque pelo novo endereço (ex.: `https://cristianoti.com.br`). Esses endereços são usados pelo Google e pela prévia do link no WhatsApp.
 
 ---
 
 ## Quando escolher o modelo definitivo
 
 Se decidir ficar só com um modelo e tirar a home de escolha: no repositório, apague o `index.html` e a pasta `assets` da raiz, e mova o conteúdo da pasta do modelo escolhido (`index.html` e `assets`) para a raiz. O site passa a abrir direto nesse modelo.
+
+Depois disso, no `index.html` que ficou na raiz, troque `https://site-cristiano.vercel.app/modelo-1/` (ou `/modelo-3/`) por `https://site-cristiano.vercel.app/`, e no `sitemap.xml` deixe só o endereço da raiz.
